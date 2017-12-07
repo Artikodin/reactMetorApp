@@ -22,6 +22,7 @@ export class App extends Component {
   }
 
   render() {
+    console.log(this.props.users)
     return (
       <div className="container">
         <header>
@@ -34,19 +35,18 @@ export class App extends Component {
           />
         </form>
         <ul>
-          {/* {this.renderTasks()} */}
+          {this.renderTasks()}
         </ul>
       </div>
     );
   }
 }
 
-// export default withTracker(() => {
-//   return {
-//     users: Users.find({}).fetch(),
-//   };
-//   console.log(users)
-// })(App);
+export default withTracker(() => {
+  return {
+    users: Users.find().fetch(),
+  };
+})(App);
 
 // const FooWithAllTheThings = compose(
 //   withTracker(() => {
