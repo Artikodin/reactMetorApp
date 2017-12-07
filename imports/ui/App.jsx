@@ -44,8 +44,9 @@ export class App extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe('allUsers');
   return {
-    users: Users.find().fetch(),
+    users: Users.find({test:false}).fetch(),
   };
 })(App);
 
