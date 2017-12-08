@@ -14,6 +14,8 @@ export class MessagesList extends Component {
 
   render() {
 
+    console.log(this.props);
+
 
     let messageList = null;
     if (this.props.messages.length > 0) {
