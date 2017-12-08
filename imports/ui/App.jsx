@@ -24,11 +24,7 @@ export default class App extends Component {
         </header>
         <SideBar />
         <MessagesList />
-        <ChatBar />
       </div>
     );
   }
 }
-
-
-
