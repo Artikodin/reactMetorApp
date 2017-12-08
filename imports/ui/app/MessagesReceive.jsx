@@ -7,33 +7,22 @@ import { Messages } from '/imports/api/messages';
 import { Card, List } from 'antd';
 import '/imports/ui/stylesheets/app/messagesReceive.css';
 
-export class MessagesReceive extends Component {
+export default class MessagesReceive extends Component {
 
   render(){
 
 
     return (
-      <List
-        className="messageContainerReceive"
-        dataSource={this.props.messages}
-        renderItem={message => (
+      <div className="messageContainerReceive">
           <Card
-            title={'test'}
+            title={this.props.autor}
             bordered={false}
             className="messagesReceive"
-            extra={<span>Date</span>}
+            extra={<span>{this.props.date}</span>}
           >
-              {message.message}
+              {this.props.message}
           </Card>
-    )}
-  />
+      </div>
       )
   }
 }
-
-export default withTracker(() => {
-  Meteor.subscribe('allMessages');
-  return {
-    messages: Messages.find().fetch(),
-  };
-})(MessagesReceive);

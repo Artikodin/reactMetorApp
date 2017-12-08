@@ -16,28 +16,12 @@ import './stylesheets/app.css';
 // App component - represents the whole app
 export default class App extends Component {
 
-  // renderTasks() {
-  //   if (this.props.users.length > 0)
-  //     return this.props.users.map((user) => (
-  //       <Task key={user._id} user={user.emails[0].address} />
-  //     ));
-  // }
-
   render() {
     return (
       <div className="container">
         <header>
           <AccountManage />
         </header>
-        {/* <form action="#" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            ref="message"
-          />
-        </form>
-        <ul>
-          {this.renderTasks()}
-        </ul> */}
         <SideBar />
         <MessagesList />
         <ChatBar />

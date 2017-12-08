@@ -6,6 +6,10 @@ Meteor.publish('allMessages', function() {
     return Messages.find();
 });
 
+Meteor.publish('discussMessage', function() {
+    return Messages.find({userSend: Meteor.userId()});
+});
+
 Meteor.publish('userList', function (){ 
-    return Meteor.users.find({});
+    return Meteor.users.find();
   });

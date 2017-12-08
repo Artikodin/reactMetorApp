@@ -11,17 +11,40 @@ import '/imports/ui/stylesheets/app/messageList.css';
 
 export class MessagesList extends Component {
 
-  render(){
+  render() {
+
+
+    let messageList = null;
+    if (this.props.messages.length > 0) {
+      messageList = this.props.messages.map((message) => {
+        if (message.userSend === Meteor.userId()) {
+          return (
+            <MessagesReceive
+              key={message._id}
+              autor='test'
+              message={message.message}
+              date='date'
+            />
+          )
+        } else {
+          return (
+            <MessagesSent
+              key={message._id}
+              autor='test'
+              message={message.message}
+              date='date'
+            />
+          )
+        }
+      });
+    }
 
 
     return (
-      <List
-        className="messageContainer"
-      >
-        <MessagesSent/>
-        <MessagesReceive/>
-      </List>
-      )
+      <div className="messageContainer">
+        {messageList}
+      </div>
+    )
   }
 }
 
