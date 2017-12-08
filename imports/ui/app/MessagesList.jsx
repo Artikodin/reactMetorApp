@@ -42,8 +42,11 @@ export class MessagesList extends Component {
 
 
     return (
-      <div className="messageContainer">
-        {messageList}
+      <div className="rightContainer">
+        <div className="messageContainer">
+          {messageList}
+        </div>
+        <ChatBar />
       </div>
     )
   }
