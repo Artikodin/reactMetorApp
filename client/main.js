@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, Switch } from 'react-router';
 import App from '/imports/ui/App';
 import NotFound from '/imports/ui/NotFound';
 import Login from '/imports/ui/Login';
@@ -24,12 +24,12 @@ const authenticate = (nextState, replace) => {
 Meteor.startup(() => {
     render(
         <Router history={createBrowserHistory()}>
-            <div>
+            <Switch>
                 <Route exact path="/" component={App} />
                 <Route name="chat" path="/chat/:_id" component={App} onEnter={authenticate} />
                 <Route name="login" path="/login" component={ Login } />
-                <Route path="*" component={ NotFound } />
-            </div>
+                <Route exact={true} path="*" component={ NotFound } />
+            </Switch>
         </Router>,
         document.getElementById('app'));
 });
