@@ -4,6 +4,12 @@ import { Messages } from '/imports/api/messages';
 
 import AccountManage  from '/imports/ui/components/AccountManage'
 import Task from './Task';
+import SideBar from './SideBar';
+import Messages from './Messages';
+import ChatBar from './ChatBar';
+
+import './css/index.css';
+
 
 // App component - represents the whole app
 export class App extends Component {
@@ -39,6 +45,9 @@ export class App extends Component {
         <ul>
           {this.renderTasks()}
         </ul>
+        <SideBar />
+        <Messages />
+        <ChatBar />
       </div>
     );
   }
