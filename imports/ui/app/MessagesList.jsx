@@ -14,6 +14,8 @@ export class MessagesList extends Component {
 
   render() {
 
+    console.log(this.props);
+
 
     let messageList = null;
     if (this.props.messages.length > 0) {
@@ -22,7 +24,7 @@ export class MessagesList extends Component {
           return (
             <MessagesReceive
               key={message._id}
-              autor='test'
+              autor={message.userSendName}
               message={message.message}
               date='date'
             />
@@ -31,7 +33,7 @@ export class MessagesList extends Component {
           return (
             <MessagesSent
               key={message._id}
-              autor='test'
+              autor={message.userSendName}
               message={message.message}
               date='date'
             />
