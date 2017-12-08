@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Card, Avatar, List } from 'antd';
 
-export default class Messages extends Component {
+import '/imports/ui/stylesheets/app/messageList.css';
+
+export default class MessagesList extends Component {
 
   render(){
 

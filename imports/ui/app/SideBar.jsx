@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, Avatar } from 'antd';
 
+import '/imports/ui/stylesheets/app/sideBar.css';
+
 export default class SideBar extends Component {
 
   render(){

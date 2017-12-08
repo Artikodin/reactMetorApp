@@ -1,42 +1,35 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+
 import { Messages } from '/imports/api/messages';
 
-import AccountManage  from '/imports/ui/components/AccountManage'
-import Task from './Task';
-import SideBar from './SideBar';
-import Messages from './Messages';
-import ChatBar from './ChatBar';
+import AccountManage  from '/imports/ui/app/AccountManage'
+import ChatBar from '/imports/ui/app/ChatBar';
+import SideBar from '/imports/ui/app/SideBar';
+import MessagesList from '/imports/ui/app/MessagesList';
 
-import './css/index.css';
+import Task from './Task';
+
+import './stylesheets/app.css';
 
 
 // App component - represents the whole app
-export class App extends Component {
+export default class App extends Component {
 
-  renderTasks() {
-    if (this.props.users.length > 0)
-      return this.props.users.map((user) => (
-        <Task key={user._id} user={user.emails[0].address} />
-      ));
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    message = this.refs.message.value.trim();
-    Meteor.call('sendMessage', message, () => {
-      this.refs.message.value = "";
-    })
-  }
+  // renderTasks() {
+  //   if (this.props.users.length > 0)
+  //     return this.props.users.map((user) => (
+  //       <Task key={user._id} user={user.emails[0].address} />
+  //     ));
+  // }
 
   render() {
-    console.log(this.props.users)
     return (
       <div className="container">
         <header>
           <AccountManage />
         </header>
-        <form action="#" onSubmit={this.handleSubmit}>
+        {/* <form action="#" onSubmit={this.handleSubmit}>
           <input
             type="text"
             ref="message"
@@ -44,9 +37,9 @@ export class App extends Component {
         </form>
         <ul>
           {this.renderTasks()}
-        </ul>
+        </ul> */}
         <SideBar />
-        <Messages />
+        <MessagesList />
         <ChatBar />
       </div>
     );
@@ -60,9 +53,9 @@ export class App extends Component {
 //   };
 // })(App);
 
-export default withTracker(() => {
-  Meteor.subscribe('userList');
-  return {
-    users: Meteor.users.find({}).fetch(),
-  };
-})(App);
+// export default withTracker(() => {
+//   Meteor.subscribe('userList');
+//   return {
+//     users: Meteor.users.find({}).fetch(),
+//   };
+// })(App);

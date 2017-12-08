@@ -4,20 +4,26 @@ import { Input, Form, Button } from 'antd';
 export default class ChatBar extends Component {
 
   handleSubmit = (e) => {
-  e.preventDefault();
-  console.log('hey');
-}
+    e.preventDefault();
+    message = this.refs.message.value.trim();
+    console.log(message);
+    // Meteor.call('sendMessage', message, () => {
+    //   this.refs.message.value = "";
+    // })
+  }
 
-
-  render(){
+  render() {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Input placeholder="Write message" />
+        <Input 
+        placeholder="Write message" 
+        test="message"
+        />
         <Button
           type="primary"
           htmlType="submit"
-          >
+        >
           Send
         </Button>
       </Form>
