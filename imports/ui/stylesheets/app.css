@@ -1,5 +1,6 @@
 .container {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   padding: 50px;
+  overflow: hidden;
 }

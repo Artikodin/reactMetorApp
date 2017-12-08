@@ -1,4 +1,6 @@
 .userList {
     width: 35%;
     float: left;
+    height: 80vh;
+    overflow: auto;
 }
