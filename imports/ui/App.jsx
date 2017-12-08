@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Messages } from '/imports/api/messages';
 
-import { Users } from '/imports/api/users'
+import AccountManage  from '/imports/ui/components/AccountManage'
 import Task from './Task';
 
 // App component - represents the whole app
@@ -9,16 +10,16 @@ export class App extends Component {
 
   renderTasks() {
     if (this.props.users.length > 0)
-      return this.props.users.map((task) => (
-        <Task key={task._id} user={task.name} />
+      return this.props.users.map((user) => (
+        <Task key={user._id} user={user.emails[0].address} />
       ));
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    user = this.refs.user.value.trim();
-    Meteor.call('addUser', user, () => {
-      this.refs.user.value = "";
+    message = this.refs.message.value.trim();
+    Meteor.call('sendMessage', message, () => {
+      this.refs.message.value = "";
     })
   }
 
@@ -27,12 +28,12 @@ export class App extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Todo List</h1>
+          <AccountManage />
         </header>
         <form action="#" onSubmit={this.handleSubmit}>
           <input
             type="text"
-            ref="user"
+            ref="message"
           />
         </form>
         <ul>
@@ -43,17 +44,16 @@ export class App extends Component {
   }
 }
 
+// export default withTracker(() => {
+//   Meteor.subscribe('allMessages');
+//   return {
+//     messages: Messages.find({test:false}).fetch(),
+//   };
+// })(App);
+
 export default withTracker(() => {
-  Meteor.subscribe('allUsers');
+  Meteor.subscribe('userList');
   return {
-    users: Users.find({test:false}).fetch(),
+    users: Meteor.users.find({}).fetch(),
   };
 })(App);
-
-// const FooWithAllTheThings = compose(
-//   withTracker(() => {
-//     return {
-//       users: Users.find({}).fetch(),
-//     };}
-//   )
-// )(App);

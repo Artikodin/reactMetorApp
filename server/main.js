@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Users } from '/imports/api/users';
+import { Messages } from '/imports/api/messages';
 
 Meteor.startup(() => {
   // code to run on server at startup
