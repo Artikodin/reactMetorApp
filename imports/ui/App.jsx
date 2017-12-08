@@ -46,16 +46,5 @@ export default class App extends Component {
   }
 }
 
-// export default withTracker(() => {
-//   Meteor.subscribe('allMessages');
-//   return {
-//     messages: Messages.find({test:false}).fetch(),
-//   };
-// })(App);
 
-// export default withTracker(() => {
-//   Meteor.subscribe('userList');
-//   return {
-//     users: Meteor.users.find({}).fetch(),
-//   };
-// })(App);
+

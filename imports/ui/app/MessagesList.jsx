@@ -1,36 +1,37 @@
 import React, { Component } from 'react';
-import { Card, Avatar, List } from 'antd';
 
+import { withTracker } from 'meteor/react-meteor-data';
+
+import { Messages } from '/imports/api/messages';
+
+import { Card, Avatar, List } from 'antd';
 import '/imports/ui/stylesheets/app/messageList.css';
 
-export default class MessagesList extends Component {
+export class MessagesList extends Component {
 
   render(){
 
-    const data = [
-      {
-        userName: 'User 1',
-        content: 'hey !'
-      },
-      {
-        userName: 'User 2',
-        content: 'hello :)'
-      }
-    ];
 
     return (
       <List
         className="messageContainer"
-        dataSource={data}
+        dataSource={this.props.messages}
         renderItem={message => (
       <Card
-        title={message.userName}
+        title={'test'}
         bordered={false}
       >
-          {message.content}
+          {message.message}
       </Card>
     )}
   />
       )
   }
 }
+
+export default withTracker(() => {
+  Meteor.subscribe('allMessages');
+  return {
+    messages: Messages.find().fetch(),
+  };
+})(MessagesList);

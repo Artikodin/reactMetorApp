@@ -1,37 +1,24 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+
 import { List, Avatar } from 'antd';
 
 import '/imports/ui/stylesheets/app/sideBar.css';
 
-export default class SideBar extends Component {
+export class SideBar extends Component {
 
   render(){
-
-    const data = [
-      {
-        title: 'User 1',
-      },
-      {
-        title: 'User 2',
-      },
-      {
-        title: 'User 3',
-      },
-      {
-        title: 'User 4',
-      },
-    ];
 
     return (
       <List
         itemLayout="horizontal"
         className="userList"
-        dataSource={data}
-        renderItem={item => (
+        dataSource={this.props.users}
+        renderItem={user => (
       <List.Item>
         <List.Item.Meta
           avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={<a href="https://ant.design">{item.title}</a>}
+          title={<a href="https://ant.design">{user.emails[0].address}</a>}
         />
       </List.Item>
     )}
@@ -39,3 +26,10 @@ export default class SideBar extends Component {
       )
   }
 }
+
+export default withTracker(() => {
+  Meteor.subscribe('userList');
+  return {
+    users: Meteor.users.find({}).fetch(),
+  };
+})(SideBar);
