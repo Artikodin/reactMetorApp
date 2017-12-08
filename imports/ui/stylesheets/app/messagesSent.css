@@ -1,0 +1,9 @@
+.messageContainerSent {
+  width: 100%;
+}
+
+.messageContainerSent .messagesSent{
+  background-color: aquamarine;
+  width: 65%;
+  float: right;
+}

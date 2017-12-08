@@ -1,0 +1,9 @@
+.messageContainerReceive {
+  width: 100%;
+}
+
+.messageContainerReceive .messagesReceive{
+  background-color: pink;
+  width: 65%;
+  float: left;
+}
