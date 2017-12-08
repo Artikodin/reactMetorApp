@@ -9,3 +9,16 @@
     overflow: auto;
     margin-bottom: 10px !important;
 }
+
+.ant-form {
+  display: flex;
+}
+
+.ant-form .ant-input {
+  padding: 25px;
+}
+
+.ant-form .ant-btn {
+  padding: 25px;
+  line-height: 0.25;
+}

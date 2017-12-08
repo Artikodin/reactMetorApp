@@ -25,14 +25,20 @@ export default class ChatBar extends Component {
   render() {
 
     return (
-      <Form>
-        <Search
+      <Form
+        onSubmit={this.handleSubmit}
+       >
+        <Input
           placeholder="write a message"
           onChange={this.handleChange}
-          onSearch={this.handleSubmit}
-          enterButton="send"
           value={this.state.value}
         />
+         <Button
+          type="primary"
+          htmlType="submit"
+          disabled={!this.state.value}
+         > Send
+         </Button>
       </Form>
     )
   }
