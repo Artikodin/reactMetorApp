@@ -13,13 +13,24 @@ import './stylesheets/app.css';
 // App component - represents the whole app
 export default class App extends Component {
 
+  constructor(){
+    super()
+    this.state={
+      userReceiveId:''
+    }
+  }
+
+  componentDidMount(){
+    this.setState({userReceiveId : this.props.match.params._id})
+  }
+
   render() {
     return (
       <div className="container">
         <header>
         </header>
-        <SideBar />
-        <MessagesList />
+        <SideBar/>
+        <MessagesList userReceiveId={this.state.userReceiveId}/>
       </div>
     );
   }

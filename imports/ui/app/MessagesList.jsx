@@ -20,20 +20,20 @@ export class MessagesList extends Component {
       messageList = this.props.messages.map((message) => {
         if (message.userSend === Meteor.userId()) {
           return (
-            <MessagesReceive
+            <MessagesSent
               key={message._id}
-              autor='test'
+              autor={message.userSendName}
               message={message.message}
-              date='date'
+              date={'message.sendAt'}
             />
           )
         } else {
           return (
-            <MessagesSent
+            <MessagesReceive
               key={message._id}
-              autor='test'
+              autor={message.userSendName}
               message={message.message}
-              date='date'
+              date={'message.sendAt'}
             />
           )
         }
@@ -46,15 +46,18 @@ export class MessagesList extends Component {
         <div className="messageContainer">
           {messageList}
         </div>
-        <ChatBar />
+        <ChatBar userReceiveId={this.props.userReceiveId}/>
       </div>
     )
   }
 }
 
-export default withTracker(() => {
+// attention mauvaise pratique !!!  Trie des données coté client au lieu de coté server ducoup trop de data envoyé!!!!!
+export default withTracker((props) => {
   Meteor.subscribe('allMessages');
+  console.log('receiver id ',props.userReceiveId);
+  console.log('curent id ',Meteor.userId());
   return {
-    messages: Messages.find().fetch(),
+    messages: Messages.find({$or: [{userReceiveId: props.userReceiveId, userSendId:Meteor.userId()},{userSendId: props.userReceiveId, userReceiveId:Meteor.userId()}]}).fetch()
   };
 })(MessagesList);
