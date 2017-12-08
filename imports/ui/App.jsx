@@ -3,11 +3,12 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import { Users } from '/imports/api/users'
 import Task from './Task';
+import SideBar from './SideBar';
+import Messages from './Messages';
+import ChatBar from './ChatBar';
 
-import { Button } from 'antd';
-import { Card } from 'antd';
+import './css/index.css';
 
-import './app.css';
 
 // App component - represents the whole app
 export class App extends Component {
@@ -31,27 +32,9 @@ export class App extends Component {
     console.log(this.props.users)
     return (
       <div className="container">
-        {/*<header>
-          <h1>Todo List</h1>
-        </header>
-        <form action="#" onSubmit={this.handleSubmit} className="taskForm">
-          <Input
-            size="large"
-            type="text"
-            ref="user"
-          />
-        </form>
-        <ul>
-          {this.renderTasks()}
-        </ul>
-      */}
-      <Card title="My wonderful app" extra={<a href="#">More</a>} style={{ width: 600, height: 600 }}>
-        <Button
-          type="primary"
-        >
-          Inscris toi !
-        </Button>
-      </Card>
+        <SideBar />
+        <Messages />
+        <ChatBar />
       </div>
     );
   }
