@@ -23,7 +23,7 @@ export class MessagesSent extends Component {
             className="messagesSent"
             extra={<span>Date</span>}
           >
-              {message.message}
+              <p>{message.message}</p>
           </Card>
     )}
   />

@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Messages } from '/imports/api/messages';
 import MessagesSent from './MessagesSent';
 import MessagesReceive from './MessagesReceive';
+import ChatBar from './ChatBar';
 
 import { Card, Avatar, List } from 'antd';
 import '/imports/ui/stylesheets/app/messageList.css';
@@ -15,12 +16,15 @@ export class MessagesList extends Component {
 
 
     return (
-      <List
-        className="messageContainer"
-      >
-        <MessagesSent/>
-        <MessagesReceive/>
-      </List>
+      <div className="rightContainer">
+        <List
+          className="messageContainer"
+        >
+          <MessagesSent/>
+          <MessagesReceive/>
+        </List>
+        <ChatBar />
+      </div>
       )
   }
 }
