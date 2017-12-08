@@ -40,11 +40,7 @@ export default class App extends Component {
         </ul> */}
         <SideBar />
         <MessagesList />
-        <ChatBar />
       </div>
     );
   }
 }
-
-
-

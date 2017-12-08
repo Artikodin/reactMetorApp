@@ -1,6 +1,11 @@
+.rightContainer{
+  width: 60%;
+  float: right;
+}
+
 .messageContainer {
-    width: 60%;
-    float: right;
+    width: 100%;
     height: 80vh;
     overflow: auto;
+    margin-bottom: 10px !important;
 }

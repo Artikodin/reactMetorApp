@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Form, Button } from 'antd';
+const Search = Input.Search;
 
 export default class ChatBar extends Component {
 
@@ -14,8 +15,7 @@ export default class ChatBar extends Component {
     this.setState({ value: e.target.value });
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = () => {
     message = this.state.value.trim();
     Meteor.call('sendMessage', message, () => {
       this.setState({ value: '' });
@@ -25,19 +25,14 @@ export default class ChatBar extends Component {
   render() {
 
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Input
-          placeholder="Write message"
-          test="message"
+      <Form>
+        <Search
+          placeholder="write a message"
           onChange={this.handleChange}
+          onSearch={this.handleSubmit}
+          enterButton="send"
           value={this.state.value}
         />
-        <Button
-          type="primary"
-          htmlType="submit"
-        >
-          Send
-        </Button>
       </Form>
     )
   }
