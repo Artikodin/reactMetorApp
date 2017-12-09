@@ -8,18 +8,19 @@
 
 .userList >li{
     margin-bottom: 3px;
-    color: #ecedf2;
-    padding: 10px;
 }
 
 
 .userList >li:first-of-type{
+    color: #ecedf2;
     font-weight: 600;
+    padding: 10px;
 }
 
 .userList >li>a{
     color: #ecedf2;
     display: block;
+    padding: 10px;
     background-color: #372CA6;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
