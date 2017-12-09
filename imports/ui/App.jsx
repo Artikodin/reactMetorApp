@@ -3,6 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import { Messages } from '/imports/api/messages';
 
+import HeaderBar from '/imports/ui/app/HeaderBar';
 import ChatBar from '/imports/ui/app/ChatBar';
 import SideBar from '/imports/ui/app/SideBar';
 import MessagesList from '/imports/ui/app/MessagesList';
@@ -26,11 +27,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <header>
-        </header>
-        <SideBar/>
-        <MessagesList userReceiveId={this.state.userReceiveId}/>
+      <div className="appContainer">
+        <HeaderBar/>
+        <div className="bodyContainer">
+          <SideBar/>
+          <MessagesList userReceiveId={this.state.userReceiveId}/>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,13 @@
-.container {
+.appContainer {
   width: 100vw;
   height: 100vh;
-  padding: 50px;
   overflow: hidden;
+  background: linear-gradient(to right, #673AB7 , #512DA8);  
+  display: flex;
+  flex-direction: column;
+}
+
+.bodyContainer {
+  display: flex;
+  flex-grow: 1;
 }

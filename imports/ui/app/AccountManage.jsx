@@ -17,10 +17,3 @@ export default class AccountManage extends Component {
         return <span ref="container" />
     }
 }
-
-// export default withTracker(() => {
-//   Meteor.subscribe('allUsers');
-//   return {
-//     users: Users.find({test:false}).fetch(),
-//   };
-// })(App);

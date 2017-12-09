@@ -1,13 +1,14 @@
 .rightContainer{
-  width: 60%;
-  float: right;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .messageContainer {
-    width: 100%;
-    height: 80vh;
     overflow: auto;
-    margin-bottom: 10px !important;
+    padding: 15px;
+    background-color: #1F1660;
+    height: 100%;
 }
 
 .ant-form {

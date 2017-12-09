@@ -3,7 +3,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import { List, Avatar } from 'antd';
 
-import AccountManage  from '/imports/ui/app/AccountManage'
 
 import '/imports/ui/stylesheets/app/sideBar.css';
 
@@ -39,8 +38,7 @@ export class SideBar extends Component {
 
     return (
       <ul className="userList">
-        <AccountManage />
-        <li>Vous êtes connectez avec : {this.state.currentEmail}</li>
+        <li>Utilisateurs inscrit au super chat</li>
         {userList}
       </ul>
     )
