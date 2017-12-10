@@ -14,9 +14,6 @@ export class MessagesList extends Component {
 
   render() {
 
-    console.log(this.props);
-
-
     let messageList = null;
     if (this.props.messages.length > 0) {
       messageList = this.props.messages.map((message) => {
@@ -57,8 +54,6 @@ export class MessagesList extends Component {
 // attention mauvaise pratique !!!  Trie des données coté client au lieu de coté server ducoup trop de data envoyé!!!!!
 export default withTracker((props) => {
   Meteor.subscribe('allMessages');
-  console.log('receiver id ',props.userReceiveId);
-  console.log('curent id ',Meteor.userId());
   return {
     messages: Messages.find({$or: [{userReceiveId: props.userReceiveId, userSendId:Meteor.userId()},{userSendId: props.userReceiveId, userReceiveId:Meteor.userId()}]}).fetch()
   };

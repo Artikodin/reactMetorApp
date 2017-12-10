@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Switch } from 'react-router';
+import { Router, Route, IndexRoute, Switch, Redirect } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import App from '/imports/ui/App';
 import NotFound from '/imports/ui/NotFound';
@@ -8,16 +8,11 @@ import Login from '/imports/ui/Login';
 
 import 'antd/dist/antd.css';
 
-// Meteor.startup(() => {
-//   render(<Route />, document.getElementById('app'));
-// });
-
-const authenticate = (nextState, replace) => {
+const authenticate = () => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
-    replace({
-      pathname: '/login',
-      state: { nextPathname: nextState.location.pathname },
-    });
+    return false;
+  } else {
+    return true;
   }
 };
 
@@ -26,8 +21,8 @@ Meteor.startup(() => {
     <Router history={createBrowserHistory()}>
       <div>
         <Switch>
-          <Route exact path="/" component={App} />
-          <Route name="chat" path="/chat/:_id" component={App} onEnter={authenticate} />
+          <PrivateRoute exact path="/" component={App} />
+          <PrivateRoute name="chat" path="/chat/:_id" component={App} />
           <Route name="login" path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
@@ -35,3 +30,15 @@ Meteor.startup(() => {
     </Router>,
     document.getElementById('app'));
 });
+
+const PrivateRoute = ({ component: Component }) => (
+  <Route render={() => (
+    authenticate() ?(
+      <Component />
+    ):(
+      <Redirect to={{
+        pathname: '/login'
+      }} />
+    )
+  )} />
+)

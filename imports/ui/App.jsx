@@ -22,7 +22,9 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    this.setState({userReceiveId : this.props.match.params._id})
+    if(this.props.match !== undefined){
+      this.setState({userReceiveId : this.props.match.params._id})
+    }
   }
 
   render() {
