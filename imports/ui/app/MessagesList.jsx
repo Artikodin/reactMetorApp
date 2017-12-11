@@ -23,7 +23,7 @@ export class MessagesList extends Component {
               key={message._id}
               autor={message.userSendName}
               message={message.message}
-              date={'message.sendAt'}
+              date={message.timeStamp}
             />
           )
         } else {
@@ -32,7 +32,7 @@ export class MessagesList extends Component {
               key={message._id}
               autor={message.userSendName}
               message={message.message}
-              date={'message.sendAt'}
+              date={message.timeStamp}
             />
           )
         }

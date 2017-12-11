@@ -19,12 +19,12 @@ export default class ChatBar extends Component {
     e.preventDefault();
     message = this.state.value.trim();
     Meteor.call('sendMessage', message,  this.props.userReceiveId,() => {
-      this.setState({ value: '' });
+      this.setState({ Id: 'hello' });
     })
   }
 
   render() {
-    
+
     return (
       <Form
         onSubmit={this.handleSubmit}
