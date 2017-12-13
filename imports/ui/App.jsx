@@ -26,7 +26,7 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    if(this.props.match !== undefined){
+    if(this.props.match.params._id !== undefined){
       this.setState({userReceiveId : this.props.match.params._id})
     }
   }
