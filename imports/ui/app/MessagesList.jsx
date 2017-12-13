@@ -17,7 +17,7 @@ export class MessagesList extends Component {
     let messageList = null;
     if (this.props.messages.length > 0) {
       messageList = this.props.messages.map((message) => {
-        if (message.userSend === Meteor.userId()) {
+        if (message.userSendId === Meteor.userId()) {
           return (
             <MessagesSent
               key={message._id}
