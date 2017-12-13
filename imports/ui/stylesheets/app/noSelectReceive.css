@@ -1,0 +1,9 @@
+.no-select-receive{
+    display: flex;
+    flex-grow: 1;
+    background-color: white;
+}
+
+.no-select-receive>span{
+    margin: auto;
+}

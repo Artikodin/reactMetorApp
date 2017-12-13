@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Messages } from '/imports/api/messages';
 import MessagesSent from './MessagesSent';
 import MessagesReceive from './MessagesReceive';
-import ChatBar from './ChatBar';
+import ChatBar from './messageList/ChatBar';
 
 import { Card, Avatar, List } from 'antd';
 import '/imports/ui/stylesheets/app/messageList.css';

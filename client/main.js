@@ -21,8 +21,8 @@ Meteor.startup(() => {
     <Router history={createBrowserHistory()}>
       <div>
         <Switch>
-          <PrivateRoute exact path="/" component={App} />
           <PrivateRoute name="chat" path="/chat/:_id" component={App} />
+          <PrivateRoute path="/" component={App} />
           <Route name="login" path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
@@ -31,10 +31,10 @@ Meteor.startup(() => {
     document.getElementById('app'));
 });
 
-const PrivateRoute = ({ component: Component }) => (
-  <Route render={() => (
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
     authenticate() ?(
-      <Component />
+      <Component {...props}/>
     ):(
       <Redirect to={{
         pathname: '/login'
