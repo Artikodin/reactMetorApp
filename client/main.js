@@ -1,7 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, IndexRoute, Switch, Redirect } from 'react-router';
+import { Router, Route, Switch, Redirect } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
+import { Tracker } from 'meteor/tracker'
+
 import App from '/imports/ui/App';
 import NotFound from '/imports/ui/NotFound';
 import Login from '/imports/ui/Login';
@@ -16,14 +18,16 @@ const authenticate = () => {
   }
 };
 
+const history = createBrowserHistory();
+
 Meteor.startup(() => {
   render(
-    <Router history={createBrowserHistory()}>
+    <Router history={history}>
       <div>
         <Switch>
           <PrivateRoute name="chat" path="/chat/:_id" component={App} />
+          <ConnectedRoute name="login" path="/login" component={Login} />
           <PrivateRoute path="/" component={App} />
-          <Route name="login" path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -33,12 +37,34 @@ Meteor.startup(() => {
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    authenticate() ?(
-      <Component {...props}/>
-    ):(
-      <Redirect to={{
-        pathname: '/login'
-      }} />
-    )
+    authenticate() ? (
+      <Component {...props} />
+    ) : (
+        <Redirect to={{
+          pathname: '/login'
+        }} />
+      )
   )} />
 )
+
+const ConnectedRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    !authenticate() ? (
+      <Component {...props} />
+    ) : (
+        <Redirect to={{
+          pathname: '/'
+        }} />
+      )
+  )} />
+)
+
+Tracker.autorun(function () {
+  if (authenticate()) {
+    console.log('connecter')
+    history.push('/', { some: 'state' })
+  } else {
+    console.log('non connecter')
+    history.push('/login', { some: 'state' })
+  }
+});
